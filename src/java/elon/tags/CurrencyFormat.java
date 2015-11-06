@@ -46,7 +46,7 @@ public class CurrencyFormat extends BodyTagSupport {
     if (iterator.hasNext()) {
       value = (Double) iterator.next();
       this.setValueAttributes(value);
-      years++;
+      
     }
   }
 
@@ -63,6 +63,7 @@ public class CurrencyFormat extends BodyTagSupport {
   public int doAfterBody() throws JspException {
     try {
      if (iterator.hasNext()) {
+         years++;
        value = (Double) iterator.next();
        this.setValueAttributes(value);
         return EVAL_BODY_AGAIN;

@@ -27,11 +27,16 @@
         <td><label class="box">Future Value:</label></td>
         <td class="gouda"><span class="value">${user.FVCurrency}</span></td>
     </tr>
-    
+     <tr>
+                <th class="years">Year</th>
+                <th class="fut">Value</th>
+            </tr>
         <%@ taglib uri="/WEB-INF/elon.tld" prefix="cf" %>
         <cf:currency>
-      <tr>
-          <td>${years}</td>
+      
+           
+       <tr>
+          <td class="years">${years}</td>
           <td>${importantValues}</td>
       </tr>
          </cf:currency>

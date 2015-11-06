@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.business.User;
 import edu.data.UserDB;
 import java.util.ArrayList;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -47,23 +48,13 @@ public class Calculate extends HttpServlet {
              double investAmount = Double.parseDouble(request.getParameter("investAmount"));
              double yearlyRate = Double.parseDouble(request.getParameter("yearlyRate"));
              int numYears = Integer.parseInt(request.getParameter("numYears"));
-//             double futureValue = investAmount;
              double futureValue = 0; 
              
              MathThings math = new MathThings(numYears,investAmount,yearlyRate);
              futureValue = math.doMath();
              System.out.println("Hi!" + math.getArray());
              
-//             ArrayList<Double> values = new ArrayList<Double>();
-//            for(int i=0;i<numYears; i++){
-//                futureValue = investAmount+(investAmount)*((yearlyRate)/100);
-//                investAmount =futureValue;
-//                values.add(futureValue);
-//        }
-//                Array array = new Array();
-//                array.setArray(values);
-//                System.out.println(array.getArray());
-//             
+           
                 investAmount=Double.parseDouble(request.getParameter("investAmount"));
                 User user = new User(investAmount, yearlyRate, numYears, futureValue);
               
@@ -84,7 +75,12 @@ public class Calculate extends HttpServlet {
       session.setAttribute("investAmount", investAmount);
       session.setAttribute("numYears", numYears);
       session.setAttribute("yearlyRate", yearlyRate);
-         
+      
+      Cookie investCookie = new Cookie("investAmount",Double.toString(investAmount));
+      Cookie rateCookie = new Cookie("yearlyRate", Double.toString(yearlyRate));
+      response.addCookie(investCookie);
+      response.addCookie(rateCookie);
+      
             }
             catch(NumberFormatException nfe){
                 String message = "Please fill out all three text boxes.";
