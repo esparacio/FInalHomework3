@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Elena
+ * @author Elena and Z
+ * 
+ * 
  */
 public class User implements Serializable {
     private double investAmount;
